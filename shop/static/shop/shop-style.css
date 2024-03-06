@@ -1,0 +1,64 @@
+/* shop/shop-style.css */
+
+/* Navbar styles */
+.navbar {
+    background-color: #3498db;
+    box-shadow: 0 4px 6px -6px #222;
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar-brand:hover,
+.navbar-nav .nav-link:hover {
+    color: #fff;
+}
+
+/* Add a bit of spacing between navbar items */
+.navbar-nav .nav-item {
+    margin-right: 10px;
+}
+
+/* Center the search bar and make it wider */
+.navbar-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width of the navbar */
+}
+
+.navbar-form .form-inline {
+    width: 60%; /* Adjust the width as needed */
+}
+
+.navbar-form .form-control {
+    width: 80%; /* Adjust the width as needed */
+}
+
+.navbar-form .btn {
+    margin-left: 10px;
+}
+
+/* Move login/logout to the right */
+.navbar-nav.ml-auto {
+    margin-left: auto;
+}
+
+/* Card styles */
+.card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.nav-item input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width of the navbar */
+}

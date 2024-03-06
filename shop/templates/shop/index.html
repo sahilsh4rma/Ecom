@@ -1,0 +1,22 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Product Listing - EcomSite{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    {% for product in product_objects %}
+    <div class="col-md-3 mb-4">
+        <div class="card shadow">
+            <img src="{{ product.image }}" height="200px" width="80px" class="card-img-top" alt="Product Image">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.title }}</h5>
+                <p class="card-text">Price: ${{ product.price }}</p>
+                <!-- You can add more information about the product here -->
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
