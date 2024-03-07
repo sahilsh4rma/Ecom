@@ -1,4 +1,31 @@
 /* shop/shop-style.css */
+html{
+    background-color: #3A4E48;
+}
+
+/* for index page */
+/* Add your custom styles here */
+
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.btn-view {
+    background-color: #007bff;
+}
+
+.btn-add-to-cart {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-view:hover, .btn-add-to-cart:hover {
+    filter: brightness(90%);
+}
 
 
 
