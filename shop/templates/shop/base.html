@@ -76,7 +76,7 @@
             var cartIndex = 1;
             for (var x in cart) {
                 cartString += cartIndex.toString() + ". " +
-                    document.getElementById("nm" + x).innerHTML + " Qty: " + cart[x] + "<br>";
+                    document.getElementById("nm" + x).innerHTML + " Qty: " + cart[x][0] + "<br>";
                 cartIndex++;
             }
             if (cartIndex === 1) {
