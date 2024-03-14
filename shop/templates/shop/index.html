@@ -11,7 +11,7 @@
             <img src="{{ product.image }}" style="height: 200px; width: 100%; object-fit: cover;" class="card-img-top" alt="Product Image">
             <div class="card-body">
                 <h5 class="card-title" name="{{product.title}}" id="nm{{product.id}}">{{ product.title }}</h5>
-                <p class="card-text">Price: ${{ product.price }}</p>
+                <p style="display: inline;">Price: $</p><p class="card-text"  id="price{{product.id}}" style="display: inline;">{{ product.price }}</p>
                 <div class="d-flex justify-content-between align-items-center">
                     <!-- Add "View" button with a link to the product detail page -->
                     <a href="{{product.id}}" class="btn btn-primary" style="background-color: #007bff;">View</a>
@@ -66,15 +66,18 @@
   $(document).on('click','.atc',function (){ 
      var item_id = this.id;   
      var item_name = this.name;
+     var product_price = parseFloat(document.getElementById('price'+ item_id).innerHTML);
      if(cart[item_id] != undefined){
       cart[item_id][0] = cart[item_id][0]+1;
       cart[item_id][1] = item_name;
-  
+      cart[item_id][2] += product_price;
+      console.log(product_price);  
      }
      else{
       quantity = 1;
       name= item_name;
-      cart[item_id] = [quantity,name];
+      price = parseFloat(document.getElementById('price'+ item_id).innerHTML);
+      cart[item_id] = [quantity,name,price];
      }
      console.log(item_id,cart[item_id]);
      localStorage.setItem('cart',JSON.stringify(cart));

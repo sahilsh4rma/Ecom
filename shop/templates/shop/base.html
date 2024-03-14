@@ -75,8 +75,7 @@
             var cartString = "";
             var cartIndex = 1;
             for (var x in cart) {
-                cartString += cartIndex.toString() + ". " +
-                    document.getElementById("nm" + x).innerHTML + " Qty: " + cart[x][0] + "<br>";
+                cartString += cartIndex.toString() + ". " + cart[x][1] + " Qty: " + cart[x][0] + " Price: $ " +cart[x][2] + "<br>";
                 cartIndex++;
             }
             if (cartIndex === 1) {
