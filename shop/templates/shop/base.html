@@ -34,15 +34,18 @@
                     Cart (0)
                 </button>
             </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'accounts:register' %}">Sign Up</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
-            </li>
+            {% endif %}
         </ul>
     </div>
 </nav>
@@ -94,7 +97,8 @@
             }
             else{
                 // Add a button inside the popover content
-                cartString += "<a href='/checkout' class='btn btn-primary mt-2' id='checkout'>Checkout</a>";
+                cartString += "<a href='/checkout' class='btn btn-primary mt-1' id='checkout'>Checkout</a>";
+                // cartString += "<a href='{% url 'shop:index' %}' class='btn btn-primary mt-1' id='clear'>clear</a>";
             }
 
             document.getElementById("cart").setAttribute('data-content', cartString);

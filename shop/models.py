@@ -12,7 +12,7 @@ class Product(models.Model):
     image = models.CharField(max_length = 500)
 
 class Order(models.Model):
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete = models.CASCADE , default = 1)
     items = models.CharField(max_length =1000)
     name = models.CharField(max_length =200)
     email = models.CharField(max_length =200)

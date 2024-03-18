@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Product, Order
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -18,6 +19,7 @@ def detail(request, product_id):
     product =  Product.objects.get(pk = product_id)
     return render(request,'shop/detail.html',{'product' : product})
 
+@login_required
 def checkout(request):
     if request.method == "POST":
         items =request.POST.get("items","")
