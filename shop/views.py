@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Product, Order
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -32,5 +33,9 @@ def checkout(request):
         total =request.POST.get("total","")
         order = Order(items = items, name = name ,email = email ,address = address ,city = city ,state = state ,zipcode = zipcode, total = total)
         order.save()
-
     return render(request,'shop/checkout.html')
+
+
+def user_orders(request):
+    user_orders = Order.objects.filter(user=request.user)
+    return render(request,'shop/user_orders.html',{'user_orders':user_orders})

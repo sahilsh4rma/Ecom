@@ -21,3 +21,6 @@ class Order(models.Model):
     state = models.CharField(max_length =200)
     zipcode = models.CharField(max_length =200)
     total = models.FloatField()
+    order_datetime = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f"Order {self.pk} - {self.order_datetime.strftime('%Y-%m-%d %H:%M:%S')}"
