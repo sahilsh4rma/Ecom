@@ -66,10 +66,6 @@ To run the project locally, follow these steps:
 - **Persistent Cart**: The cart items persist across sessions using browser local storage.
 - **Order Processing**: Upon checkout, users can submit their shipping details, which are saved in the database as an order.
 
-## Contributing
-
-Contributions are welcome! If you'd like to contribute to this project, please fork the repository and submit a pull request with your changes.
-
 ## Author
 
 --Sahil
