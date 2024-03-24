@@ -16,7 +16,10 @@
                     <!-- Add "View" button with a link to the product detail page -->
                     <a href="{{product.id}}" class="btn btn-primary" style="background-color: #007bff;">View</a>
                     <!-- Add "Add to Cart" button with an onclick event -->
-                    <button class="btn btn-success atc" name="{{product.title}}" id="{{product.id}}" style="background-color: #4caf50;">Add to Cart</button>
+                    <form action="{% url 'shop:add_to_cart' product.id %}" method="POST">
+                      {% csrf_token %}
+                      <button class="btn btn-success atc" name="{{product.title}}" id="{{product.id}}" style="background-color: #4caf50;">Add to Cart</button>
+                    </form>
                 </div>
             </div>
         </div>

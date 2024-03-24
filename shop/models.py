@@ -24,3 +24,10 @@ class Order(models.Model):
     order_datetime = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return f"Order {self.pk} - {self.order_datetime.strftime('%Y-%m-%d %H:%M:%S')}"
+    
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    product = models.ForeignKey(Product, on_delete =models.CASCADE)
+    title = models.CharField(max_length =200)
+    price = models.FloatField()
+    quantity = models.IntegerField(default =0)

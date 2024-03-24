@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Product, Order
+from django.shortcuts import get_object_or_404, render, redirect
+from .models import Product, Order, Cart
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -39,3 +39,26 @@ def checkout(request):
 def user_orders(request):
     user_orders = Order.objects.filter(user=request.user)
     return render(request,'shop/user_orders.html',{'user_orders':user_orders})
+
+
+def add_to_cart(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    cart_item = Cart.objects.filter(user=request.user, product=product).first()
+    if cart_item:
+        cart_item.quantity += 1
+        cart_item.price = cart_item.quantity * product.price
+        cart_item.save()
+    else:
+        Cart.objects.create(user=request.user, product=product, title=product.title, price=product.price, quantity=1)
+    return redirect('shop:index')
+
+
+
+
+def view_cart(request):
+    cart_items = Cart.objects.filter(user=request.user)
+    
+    # Calculate total of the cart
+    total = sum(item.price for item in cart_items)
+    
+    return render(request, 'shop/view_cart.html', {'cart_items': cart_items, 'total': total})

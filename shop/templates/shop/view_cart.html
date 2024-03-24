@@ -1,0 +1,32 @@
+<!-- view_cart.html -->
+
+{% extends 'shop/base.html' %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Cart Items</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Item Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cart_item in cart_items %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ cart_item.title }}</td>
+                <td>{{ cart_item.quantity }}</td>
+                <td>${{ cart_item.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>Total: ${{ total }}</p>
+</div>
+{% endblock %}
