@@ -29,10 +29,8 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'shop:index' %}">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <button type="button" data-html="true" id="cart" class="btn btn-link nav-link" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Shopping Cart" data-content="{% block cart_content %}Your cart is empty.{% endblock %}">
-                    Cart (0)
-                </button>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'shop:view_cart' %}">Cart <span class="sr-only">(current)</span></a>
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">

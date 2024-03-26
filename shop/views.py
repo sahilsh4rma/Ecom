@@ -35,12 +35,12 @@ def checkout(request):
         order.save()
     return render(request,'shop/checkout.html')
 
-
+@login_required
 def user_orders(request):
     user_orders = Order.objects.filter(user=request.user)
     return render(request,'shop/user_orders.html',{'user_orders':user_orders})
 
-
+@login_required
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     cart_item = Cart.objects.filter(user=request.user, product=product).first()
@@ -54,9 +54,35 @@ def add_to_cart(request, product_id):
 
 
 
-
+@login_required
 def view_cart(request):
+     # Retrieve cart items for the current user
     cart_items = Cart.objects.filter(user=request.user)
+    
+    if request.method == "POST":
+        
+        # Create a string representation of cart items
+        items = "\n".join([f"{item.title} - Quantity: {item.quantity}, Price: ${item.price}" for item in cart_items])
+        
+        # Extract other form data
+        name = request.POST.get("name", "")
+        email = request.POST.get("email", "")
+        address = request.POST.get("address", "")
+        city = request.POST.get("city", "")
+        state = request.POST.get("state", "")
+        zipcode = request.POST.get("zipcode", "")
+        total = float(request.POST.get("total", 0))  # Convert 'total' to float
+        # Convert 'total' to integer if necessary
+        total = int(total) if total.is_integer() else total
+        # Create and save the order
+        order = Order(items=items, name=name, email=email, address=address, city=city, state=state, zipcode=zipcode, total=total)
+        order.save()
+        
+        # Clear the cart after placing the order (optional)
+        cart_items.delete()
+        
+        # Redirect to a success page or wherever appropriate
+        return redirect('shop:index')
     
     # Calculate total of the cart
     total = sum(item.price for item in cart_items)
